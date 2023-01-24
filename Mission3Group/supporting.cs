@@ -8,28 +8,21 @@ namespace Mission3Group
 {
     class supporting
     {
-        private int[,] board = { { 0,0,0 }, { 0, 0, 0 }, { 0, 0, 0 } };
-
-        public supporting(int[,] userBoard)
+        public void printBoard(char[,] board)
         {
-            board = userBoard;
-        }
-
-        public void printBoard()
-        {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < board.GetLength(0); i++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < board.GetLength(1); j++)
                 {
-                    Console.Write(board[i, j]);
+                    Console.Write(board[i, j] + "\t");
                 }
-                Console.Write("\n");
+                Console.WriteLine();
             }
         }
 
         // Method to return the winner if there is one
 
-        public int[] findWinner()
+        public int[] findWinner(char[,] board)
         {
             
             int[] determinates = { 0, 0 };
@@ -41,7 +34,7 @@ namespace Mission3Group
             // check board rows
             for (int i = 0; i < 3; i++)
             {
-                if (board[i, 0] == board[i, 1] && board[i, 1] == board[i, 2] && board[i, 0] != 0)
+                if (board[i, 0] == board[i, 1] && board[i, 1] == board[i, 2] && (board[i, 0] == 'X' || board[i, 0] == 'O'))
                 {
                     determinates[0] = 1;
                     determinates[1] = board[i, 0];
@@ -54,7 +47,7 @@ namespace Mission3Group
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    if (board[0, i] == board[1, i] && board[1, i] == board[2, i] && board[0, i] != 0)
+                    if (board[0, i] == board[1, i] && board[1, i] == board[2, i] && (board[0, i] == 'X' || board[0, i] == 'O'))
                     {
                         determinates[0] = 1;
                         determinates[1] = board[0, i];
@@ -66,12 +59,12 @@ namespace Mission3Group
             // check diagonals
             if (determinates[0] == 0)
             {
-                if (board[0, 0] == board[1, 1] && board[1, 1] == board[2, 2] && board[0, 0] != 0)
+                if (board[0, 0] == board[1, 1] && board[1, 1] == board[2, 2] && (board[0, 0] == 'X' || board[0,0] == 'O'))
                 {
                     determinates[0] = 1;
                     determinates[1] = board[0, 0];
                 }
-                else if (board[0, 2] == board[1, 1] && board[1, 1] == board[2, 0] && board[0, 2] != 0)
+                else if (board[0, 2] == board[1, 1] && board[1, 1] == board[2, 0] && (board[0, 2] == 'X' || board[0,2] == 'O'))
                 {
                     determinates[0] = 1;
                     determinates[1] = board[0, 2];

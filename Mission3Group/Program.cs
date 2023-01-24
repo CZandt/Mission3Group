@@ -9,13 +9,15 @@ using System.Threading.Tasks;
 
 namespace Mission3Group
 {
-    class Driver
+    class Program
     {
         static void Main(string[] args)
         {
             //DRIVER CLASS CODE GOES HERE
             //Welcome player
             Console.WriteLine("Welcome to our tic tac toe game :-)");
+
+            supporting support = new supporting();
 
             //Initialize board array
             char[,] board = new char[3, 3]
@@ -119,17 +121,48 @@ namespace Mission3Group
                 }
 
                 //print board (call supporting function)
+                
+
+
                 if (taken == false)
                 {
-                    for (int i = 0; i < board.GetLength(0); i++)
-                    {
-                        for (int j = 0; j < board.GetLength(1); j++)
-                        {
-                            Console.Write(board[i, j] + "\t");
-                        }
-                        Console.WriteLine();
-                    }
+                    support.printBoard(board);
                 }
+
+                // Displaying winner stuff here
+
+                int[] winnerDef = support.findWinner(board);
+                // if there is a winner index 0 becomes 1
+
+                // if index[0] is 1 then index 2 determines who is the winner 1 = player1 (X) , 2 = player2 (O)
+
+                if (winnerDef[0] == 1)
+                {
+                    winner = true;
+
+                    string outputStatement;
+
+                    if (winnerDef[1] == 1)
+                    {
+
+                        outputStatement = "Congratulations " + p2 + " on winning!!";
+                        Console.WriteLine(outputStatement);
+                    }
+
+                    else
+                    {
+                        
+                        outputStatement = "Congratulations " + p1 +  " on winning!!";
+                        Console.WriteLine(outputStatement);
+
+                        
+                    }
+
+                    Console.WriteLine("PRESS ENTER TO QUIT");
+                    Console.ReadLine();
+                }
+
+
             }
         }
     }
